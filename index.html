@@ -7,11 +7,12 @@
 
 <body>
   <form action="#" name="reservationForm">
-    Full name: <input type="text" name="guestFullname"><br>
-    Email: <input type="email" name="guestEmail"><br>
-    Date: <input type="date" name="reservationDate"><br>
-    Time: <input type="time" name="reservationTime"><br>
-    Guests: <input type="range" name="guestsNumber"><input type="number" disable><br>
+    Full name: <input type="text" required name="name" placeholder="B. Elias Soto M." autocomplete="name"><br>
+    Email: <input type="email" required name="email" placeholder="username@server.com" autocomplete="email"><br>
+    Telephone: <input type="number" required name="telehone" autocomplete="tel" placeholder="017601234567"><br>
+    Date: <input type="date" required name="reservationDate"><br>
+    Time: <input type="time" required name="reservationTime"><br>
+    Guests: <input type="range" name="guestsNumber" min="1" max="26" step="1"><input type="number" min="1" max="26"><br>
     <input type="radio" name="tableLocation" value="inside" checked> Inside
     <input type="radio" name="tableLocation" value="outside"> Outside<br>
     <input type="submit" value="Make Reservation">
