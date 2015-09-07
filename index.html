@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8">
     <title>Table-Reservation</title>
-    <link rel="stylesheet" media="screen" href="styles.css">
+    <link rel="stylesheet" media="screen" href="_css/styles.css">
 </head>
 
 <body>
     <div id="reservationApp">
         
     
-        <form action="#" method="post" name="reservationForm" id="reservation_form">
+        <form action="process_reservation.php" method="post" name="reservationForm" id="reservation_form">
             <ul>
                 <li>
                     <h3>Table reservation</h3>
                     <span class="required_notification">* Denotes Required Field</span>
                 </li>
                 <li>
-                    <label for="guestName">Full name:</label>
-                    <input type="text" required name="name" id="guestName" placeholder="B. Elias Soto M." autocomplete="name">
+                    <label for="guestName">Name:</label>
+                    <input type="text" required name="name" id="guestName" placeholder="Please enter your full name" autocomplete="name">
                 </li>
                 <li>
                     <label for="guestEmail">Email:</label>
@@ -26,15 +26,19 @@
                 </li>
                 <li>
                     <label for="guestTel">Telephone:</label>
-                    <input type="tel" required name="telehone" id="guestTel" autocomplete="tel" placeholder="017601234567">
+                    <input type="tel" required name="telehone" id="guestTel" autocomplete="tel" placeholder="012345678901">
                 </li>
                 <li>
-                    <label for="reservationDateTime">Date and Time:</label>
-                    <input type="datetime-local" required name="reservationDate" id="reservationDateTime" placeholder="TT.MM.JJJJ">
+                    <label for="reservationDate">Date:</label>
+                    <input type="date" min="2015-11-01" required name="reservationDate" id="reservationDate" placeholder="TT.MM.JJJJ">
                 </tr>
                 <li>
+                    <label for="reservationTime">Time:</label>
+                    <input type="time" min="12:00" max="23:00" required name="reservationTime" id="reservationTime" placeholder="HH:MM">
+                </tr>            
+                <li>
                     <label for="guestsNumber">Guests:</label>
-                    <input type="number" name ="guestsNumber" id="guestsNumber" min="1" max="26" value="4" required>
+                    <input type="number" name ="guestsNumber" id="guestsNumber" min="1" value="4" required>
                 </li>
                 <li>
                     <input type="radio" name="tableLocation" id="tableInside" value="inside" checked><label for="tableInside">Inside</label>
