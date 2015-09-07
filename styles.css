@@ -1,0 +1,35 @@
+*:focus {outline: none;}
+
+
+:-moz-placeholder {
+    color: blue;
+}
+ 
+::-webkit-input-placeholder {
+    color: blue;
+}
+
+#guestsNumber {
+    width: 40px
+}
+
+#reservation_form ul {
+    list-style-type:none;
+    list-style-position:outside;
+    margin:0px;
+    padding:0px;
+}
+#reservation_form li{
+    padding:2px; 
+    border-bottom:1px solid #eee;
+    position:relative;
+
+}
+
+
+
+h3 {
+    margin: 0 0 0 0;
+}
+
+    
