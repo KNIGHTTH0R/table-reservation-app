@@ -37,16 +37,37 @@
 
             if(isset($errorInfo[2])){
                 $error = $errorInfo[2];
+                echo $error;
+            } else {
+                echo "reservations data added to de database";
 
             }
+
+            // EMAIL
+
+            $to = 'Brahian E. Soto M. <brahiansoto@use.startmail.com>, elias@use.startmail.com';
+            $subjetct = 'Testing the reservation System';
+            $body = 'This is the body of the email message';
+            $headers = "From: reservation_system\r\n";
+            $headers .= "Content-Type: text/plain; Charset=utf-8\r\n";
+            $headers .= "Cc: brahiansoto@hotmail.com";
+
+            $success = mail($to, $subjetct, $body, $headers, '-fbrahiansoto@use.startmail.com');
+            if ($success){
+                echo " sent.";
+            } else {
+                echo "failed";
+            }
+
+
+
+           /* fetch database
 
             $query2 = 'SELECT * FROM reservation';
             $stmt2 = $db->prepare($query2);
             $stmt2->execute();
 
             $row = $stmt2->fetch();
-
-            echo "row fetch done.";
 
             if ($row){
                do {
@@ -63,7 +84,7 @@
                 } while($row = $stmt2->fetch());
             } else {
                 echo "<h1>no results found</h1>";
-            }
+            }*/
 
         } catch(Exception $e) {
             $error = $e->getMessage();
