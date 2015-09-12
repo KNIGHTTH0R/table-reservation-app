@@ -14,19 +14,20 @@
             <ul>
                 <li>
                     <h3>Table reservation</h3>
-                    <span class="required_notification">* Denotes Required Field</span>
                 </li>
                 <li>
                     <label for="guestName">Name:</label>
-                    <input type="text" required name="name" id="guestName" placeholder="Please enter your full name" autocomplete="name">
+                    <input type="text" required name="name" id="guestName" placeholder="Brahian E. Soto M." autocomplete="name" pattern=".+"><br>
+                    <span id="name_hint" class="form_hint"></span>
                 </li>
                 <li>
                     <label for="guestEmail">Email:</label>
-                    <input type="email" required name="email" id="guestEmail" placeholder="username@server.com" autocomplete="email">
+                    <input type="email" required name="email" id="guestEmail" placeholder="username@server.com" autocomplete="email"><br>
+                    <span id="error_hint" class="form_hint"></span>
                 </li>
                 <li>
                     <label for="guestTel">Telephone:</label>
-                    <input type="tel" required name="telehone" id="guestTel" autocomplete="tel" placeholder="012345678901">
+                    <input type="tel" required name="tel" id="guestTel" autocomplete="tel" placeholder="012345678901">
                 </li>
                 <li>
                     <label for="reservationDate">Date:</label>
@@ -42,18 +43,43 @@
                 </li>
                 <li>
                     <input type="radio" name="tableLocation" id="tableInside" value="inside" checked><label for="tableInside">Inside</label>
-                    <input type="radio" name="tableLocation" id="tableOutside" value="outside"><label for="tableOutside">Outside</label>
+                    <input type="radio" name="tableLocation" disabled id="tableOutside" value="outside"><label for="tableOutside">Outside</label>
                 </li>
                 <li>
                     <input type="submit" value="Make Reservation">
                 </li>
             
-            </table>
-            
-            
-           
+            </table>                   
         </form>
     </div>
+    <script>
+        
+        document.reservationForm.name.onfocus=function(){
+            document.getElementById("name_hint").innerHTML="Please enter your full name.";
+        };
+        
+        document.reservationForm.name.onblur=function(){
+            document.getElementById("name_hint").innerHTML="";
+        };
+        
+        
+        
+        document.reservationForm.email.onchange=function(){
+            var theEmail = document.reservationForm.email.value;
+            
+            if (theEmail.indexOf("@")){
+                document.getElementById("error_hint").innerHTML="Pease enther a valid email."; 
+            }
+
+        }; // onchange
+        
+        document.reservationForm.email.onblur=function(){            
+        
+                document.getElementById("error_hint").innerHTML="Pease enther a valid email."; 
+            }
+
+
+    </script>
 </body>
 </html>
     

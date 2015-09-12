@@ -1,14 +1,3 @@
-*:focus {outline: none;}
-
-
-:-moz-placeholder {
-    color: blue;
-}
- 
-::-webkit-input-placeholder {
-    color: blue;
-}
-
 #guestsNumber {
     width: 40px
 }
