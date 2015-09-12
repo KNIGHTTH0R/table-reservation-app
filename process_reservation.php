@@ -39,7 +39,7 @@
                 $error = $errorInfo[2];
                 echo $error;
             } else {
-                echo "reservations data added to de database";
+                echo "Reservations data added to de database.\n";
 
             }
 
@@ -54,9 +54,9 @@
 
             $success = mail($to, $subjetct, $body, $headers, '-fbrahiansoto@use.startmail.com');
             if ($success){
-                echo " sent.";
+                echo "Email sent.\n";
             } else {
-                echo "failed";
+                echo "Failed to then the email.";
             }
 
 

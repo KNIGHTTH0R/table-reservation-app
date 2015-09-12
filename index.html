@@ -9,7 +9,7 @@
 <body>
     <div id="reservationApp">
         
-    
+
         <form action="process_reservation.php" method="post" name="reservationForm" id="reservation_form">
             <ul>
                 <li>
@@ -18,25 +18,25 @@
                 <li>
                     <label for="guestName">Name:</label>
                     <input type="text" required name="name" id="guestName" placeholder="Brahian E. Soto M." autocomplete="name" pattern=".+"><br>
-                    <span id="name_hint" class="form_hint"></span>
+                    <span id="name_hint" class="hint"></span>
                 </li>
                 <li>
                     <label for="guestEmail">Email:</label>
                     <input type="email" required name="email" id="guestEmail" placeholder="username@server.com" autocomplete="email"><br>
-                    <span id="error_hint" class="form_hint"></span>
+                    <span id="error_hint" class="hint"></span>
                 </li>
                 <li>
                     <label for="guestTel">Telephone:</label>
-                    <input type="tel" required name="tel" id="guestTel" autocomplete="tel" placeholder="012345678901">
+                    <input type="tel" required name="tel" id="guestTel" autocomplete="tel" placeholder="+49 123456789">
                 </li>
                 <li>
                     <label for="reservationDate">Date:</label>
                     <input type="date" min="2015-11-01" required name="reservationDate" id="reservationDate" placeholder="TT.MM.JJJJ">
-                </tr>
+                </li>
                 <li>
                     <label for="reservationTime">Time:</label>
                     <input type="time" min="12:00" max="23:00" required name="reservationTime" id="reservationTime" placeholder="HH:MM">
-                </tr>            
+                </li>
                 <li>
                     <label for="guestsNumber">Guests:</label>
                     <input type="number" name ="guestsNumber" id="guestsNumber" min="1" value="4" required>
@@ -48,12 +48,11 @@
                 <li>
                     <input type="submit" value="Make Reservation">
                 </li>
-            
-            </table>                   
+            </ul>
         </form>
     </div>
     <script>
-        
+        // NAME HINT
         document.reservationForm.name.onfocus=function(){
             document.getElementById("name_hint").innerHTML="Please enter your full name.";
         };
@@ -61,22 +60,17 @@
         document.reservationForm.name.onblur=function(){
             document.getElementById("name_hint").innerHTML="";
         };
-        
-        
-        
-        document.reservationForm.email.onchange=function(){
-            var theEmail = document.reservationForm.email.value;
-            
-            if (theEmail.indexOf("@")){
-                document.getElementById("error_hint").innerHTML="Pease enther a valid email."; 
-            }
 
-        }; // onchange
-        
-        document.reservationForm.email.onblur=function(){            
-        
-                document.getElementById("error_hint").innerHTML="Pease enther a valid email."; 
-            }
+
+        // TEL HINT
+        document.reservationForm.name.onfocus=function(){
+            document.getElementById("name_hint").innerHTML="Please enter your full name.";
+        };
+
+        document.reservationForm.name.onblur=function(){
+            document.getElementById("name_hint").innerHTML="";
+        };
+
 
 
     </script>

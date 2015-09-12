@@ -5,8 +5,8 @@
 #reservation_form ul {
     list-style-type:none;
     list-style-position:outside;
-    margin:0px;
-    padding:0px;
+    margin:0;
+    padding:0;
 }
 #reservation_form li{
     padding:2px; 
@@ -15,10 +15,7 @@
 
 }
 
-
-
-h3 {
-    margin: 0 0 0 0;
+.hint {
+    font-size: 0.8em;
 }
-
     
