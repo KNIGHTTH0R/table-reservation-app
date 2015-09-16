@@ -59,33 +59,6 @@
                 echo "Failed to then the email.";
             }
 
-
-
-           /* fetch database
-
-            $query2 = 'SELECT * FROM reservation';
-            $stmt2 = $db->prepare($query2);
-            $stmt2->execute();
-
-            $row = $stmt2->fetch();
-
-            if ($row){
-               do {
-                    echo "<br>";
-                    echo "ID: " . $row['id'] . "<br>";
-                    echo "NAME: " . $row['guest_name'] . "<br>";
-                    echo "EMAIL: " . $row['guest_email'] . "<br>";
-                    echo "TEL: " . $row['guest_tel'] . "<br>";
-                    echo "DATE: " . $row['reservation_date'] . "<br>";
-                    echo "TIME: " . $row['reservation_time'] . "<br>";
-                    echo "GUESTS: " . $row['guests'] . "<br>";
-                    echo "LOCATION: " . $row['table_location'] . "<br>";
-                    echo "...........................................................................<br>";
-                } while($row = $stmt2->fetch());
-            } else {
-                echo "<h1>no results found</h1>";
-            }*/
-
         } catch(Exception $e) {
             $error = $e->getMessage();
 
