@@ -4,46 +4,51 @@
     <meta charset="utf-8">
     <title>Table-Reservation</title>
     <link rel="stylesheet" media="screen" href="_css/styles.css">
+
 </head>
 
 <body>
     <div id="reservationApp">
-        
 
-        <form action="process_reservation.php" method="get" name="reservationForm" id="reservation_form">
+         <form name="reservationForm" id="reservation_form" action="process_reservation.php" method="get" onsubmit="return validateForm()">
             <ul>
                 <li>
                     <h3>Table reservation</h3>
                 </li>
                 <li>
                     <label for="guestName">Name:</label>
-                    <input type="text" required name="name" id="guestName" placeholder="Brahian E. Soto M." autocomplete="name" pattern=".+"><br>
-                    <span id="name_hint" class="hint"></span>
+                    <input type="text" name="name" id="guestName" placeholder="John Doe" autocomplete="name" required><br>
+                    <span name="name_hint" class="hint"></span>
                 </li>
                 <li>
                     <label for="guestEmail">Email:</label>
-                    <input type="email" required name="email" id="guestEmail" placeholder="username@server.com" autocomplete="email"><br>
-                    <span id="error_hint" class="hint"></span>
+                    <input type="email" name="email" id="guestEmail" placeholder="username@domain.com" autocomplete="email" required><br>
+                    <span name="email_hint" class="hint"></span>
                 </li>
                 <li>
                     <label for="guestTel">Telephone:</label>
-                    <input type="tel" required name="tel" id="guestTel" autocomplete="tel" placeholder="+49 123456789">
+                    <input type="tel" name="tel" id="guestTel" placeholder="0123456789" autocomplete="tel" required>
+                    <span name="tel_hint" class="hint"></span>
                 </li>
                 <li>
                     <label for="reservationDate">Date:</label>
-                    <input type="date" min="2015-11-01" required name="reservationDate" id="reservationDate" placeholder="TT.MM.JJJJ">
+                    <input type="date" name="reservationDate" id="reservationDate" placeholder="TT.MM.JJJJ" min="2015-11-01" max="2016-05-01" required>
+                    <span name="date_hint" class="hint"></span>
                 </li>
                 <li>
                     <label for="reservationTime">Time:</label>
-                    <input type="time" min="12:00" max="23:00" required name="reservationTime" id="reservationTime" placeholder="HH:MM">
+                    <input type="time" name="reservationTime" id="reservationTime"  placeholder="HH:MM" min="12:00" max="23:00" required>
+                    <span name="time_hint" class="hint"></span>
                 </li>
                 <li>
                     <label for="guestsNumber">Guests:</label>
-                    <input type="number" name ="guestsNumber" id="guestsNumber" min="1" value="4" required>
+                    <input type="number" name ="guestsNumber" id="guestsNumber" placeholder="4" min="1" max="35" required>
+                    <span name="guestsNumber_hint" class="hint"></span>
                 </li>
                 <li>
                     <input type="radio" name="tableLocation" id="tableInside" value="inside" checked><label for="tableInside">Inside</label>
-                    <input type="radio" name="tableLocation" disabled id="tableOutside" value="outside"><label for="tableOutside">Outside</label>
+                    <input type="radio" name="tableLocation" id="tableOutside" value="outside" disabled><label for="tableOutside">Outside</label>
+                    <span name="tableLocation_hint" class="hint"></span>
                 </li>
                 <li>
                     <input type="submit" value="Make Reservation">
@@ -51,29 +56,7 @@
             </ul>
         </form>
     </div>
-    <script>
-        // NAME HINT
-        document.reservationForm.name.onfocus=function(){
-            document.getElementById("name_hint").innerHTML="Please enter your full name.";
-        };
-        
-        document.reservationForm.name.onblur=function(){
-            document.getElementById("name_hint").innerHTML="";
-        };
 
-
-        // TEL HINT
-        document.reservationForm.name.onfocus=function(){
-            document.getElementById("name_hint").innerHTML="Please enter your full name.";
-        };
-
-        document.reservationForm.name.onblur=function(){
-            document.getElementById("name_hint").innerHTML="";
-        };
-
-
-
-    </script>
 </body>
 </html>
     
