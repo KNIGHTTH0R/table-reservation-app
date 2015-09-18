@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST['name'])){
+    if(isset($_POST['name']) || isset($_POST)){
         // create databases and open connections
         try {
             $db = new PDO('sqlite:reservations.sqlite3');
@@ -16,20 +16,45 @@
                         table_location VARCHAR(20))"
             );
 
+            if($_GET['update'] == "yes"){
+                echo "<h1>updating</h1>";
+                $query = 'UPDATE reservation
+                            SET `guest_name` = :guest_name,
+                                `guest_email` = :guest_email,
+                                `guest_tel` = :guest_tel,
+                                `reservation_date` = :reservation_date,
+                                `reservation_time` = :reservation_time,
+                                `guests` = :guests,
+                                `table_location` = :table_location
+                            WHERE `id` = :id';
 
-            $query = 'INSERT
-                      INTO reservation (guest_name, guest_email, guest_tel, reservation_date, reservation_time, guests, table_location)
-                      VALUES (:guest_name, :guest_email, :guest_tel, :reservation_date, :reservation_time, :guests, :table_location)';
+                $stmt = $db->prepare($query);
 
-            $stmt = $db->prepare($query);
+                $stmt->bindParam(':guest_name', $_GET['name']);
+                $stmt->bindParam(':guest_email', $_GET['email']);
+                $stmt->bindParam(':guest_tel', $_GET['tel']);
+                $stmt->bindParam(':reservation_date', $_GET['reservationDate']);
+                $stmt->bindParam(':reservation_time', $_GET['reservationTime']);
+                $stmt->bindParam(':guests', $_GET['guestsNumber'], PDO::PARAM_INT);
+                $stmt->bindParam(':table_location', $_GET['tableLocation']);
+                $stmt->bindParam(':id', $_GET['id']);
 
-            $stmt->bindParam(':guest_name', $_POST['name']);
-            $stmt->bindParam(':guest_email', $_POST['email']);
-            $stmt->bindParam(':guest_tel', $_POST['tel']);
-            $stmt->bindParam(':reservation_date', $_POST['reservationDate']);
-            $stmt->bindParam(':reservation_time', $_POST['reservationTime']);
-            $stmt->bindParam(':guests', $_POST['guestsNumber'], PDO::PARAM_INT);
-            $stmt->bindParam(':table_location', $_POST['tableLocation']);
+            } else {
+                echo "<h1>inserting</h1>";
+                $query = 'INSERT
+                          INTO reservation (guest_name, guest_email, guest_tel, reservation_date, reservation_time, guests, table_location)
+                          VALUES (:guest_name, :guest_email, :guest_tel, :reservation_date, :reservation_time, :guests, :table_location)';
+
+                $stmt = $db->prepare($query);
+
+                $stmt->bindParam(':guest_name', $_GET['name']);
+                $stmt->bindParam(':guest_email', $_GET['email']);
+                $stmt->bindParam(':guest_tel', $_GET['tel']);
+                $stmt->bindParam(':reservation_date', $_GET['reservationDate']);
+                $stmt->bindParam(':reservation_time', $_GET['reservationTime']);
+                $stmt->bindParam(':guests', $_GET['guestsNumber'], PDO::PARAM_INT);
+                $stmt->bindParam(':table_location', $_GET['tableLocation']);
+            }
 
             $stmt->execute();
 
