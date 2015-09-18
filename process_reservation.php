@@ -1,5 +1,25 @@
 <?php
-    if(isset($_POST['name']) || isset($_POST)){
+
+function send_email($body_of_msj="default body", $subject_of_msj="default msj")
+{
+// EMAIL
+
+    $to = 'Brahian E. Soto M. <brahiansoto@use.startmail.com>, elias@use.startmail.com';
+    $subject = $subject_of_msj;
+    $body = $body_of_msj;
+    $headers = "From: reservation_system@wissensextraktor.de\r\n";
+    $headers .= "Content-Type: text/plain; Charset=utf-8\r\n";
+    $headers .= "Cc: brahiansoto@hotmail.com";
+
+    $success = mail($to, $subject, $body, $headers, '-fbrahiansoto@use.startmail.com');
+    if ($success) {
+        echo "Email sent.\n";
+    } else {
+        echo "Failed to then the email.";
+    }
+}
+
+if(isset($_GET['name'])){
         // create databases and open connections
         try {
             $db = new PDO('sqlite:reservations.sqlite3');
@@ -15,6 +35,9 @@
                         guests INTEGER,
                         table_location VARCHAR(20))"
             );
+
+            $subject = "";
+            $body = "";
 
             if($_GET['update'] == "yes"){
                 echo "<h1>updating</h1>";
@@ -39,6 +62,22 @@
                 $stmt->bindParam(':table_location', $_GET['tableLocation']);
                 $stmt->bindParam(':id', $_GET['id']);
 
+                // EMAIL-CONTENT
+
+                $body .= '
+                CHANGE RESERVATION:
+                ---------------------------------------
+                DATE: '.$_GET['reservationDate'].'
+                TIME: '.$_GET['reservationTime'].'
+                GUESTS: '.$_GET['guestsNumber'].'
+                LOCATION: '.$_GET['tableLocation'].'
+                ---------------------------------------
+                MADE BY: '.$_GET['name'].'
+                EMAIL: '.$_GET['email'].'
+                TEL: '.$_GET['tel'].'';
+
+                $subject .= 'Change reservation';
+
             } else {
                 echo "<h1>inserting</h1>";
                 $query = 'INSERT
@@ -54,6 +93,24 @@
                 $stmt->bindParam(':reservation_time', $_GET['reservationTime']);
                 $stmt->bindParam(':guests', $_GET['guestsNumber'], PDO::PARAM_INT);
                 $stmt->bindParam(':table_location', $_GET['tableLocation']);
+
+                // EMAIL-CONTENT
+
+                $body .= '
+                NEW RESERVATION:
+                ---------------------------------------
+                DATE: '.$_GET['reservationDate'].'
+                TIME: '.$_GET['reservationTime'].'
+                GUESTS: '.$_GET['guestsNumber'].'
+                LOCATION: '.$_GET['tableLocation'].'
+                ---------------------------------------
+                MADE BY: '.$_GET['name'].'
+                EMAIL: '.$_GET['email'].'
+                TEL: '.$_GET['tel'].'';
+
+                $subject .= 'New reservation';
+
+
             }
 
             $stmt->execute();
@@ -65,24 +122,11 @@
                 echo $error;
             } else {
                 echo "Reservations data added to de database.\n";
+                send_email($body, $subject);
 
             }
 
-            // EMAIL
 
-            $to = 'Brahian E. Soto M. <brahiansoto@use.startmail.com>, elias@use.startmail.com';
-            $subjetct = 'Testing the reservation System';
-            $body = 'This is the body of the email message';
-            $headers = "From: reservation_system\r\n";
-            $headers .= "Content-Type: text/plain; Charset=utf-8\r\n";
-            $headers .= "Cc: brahiansoto@hotmail.com";
-
-            $success = mail($to, $subjetct, $body, $headers, '-fbrahiansoto@use.startmail.com');
-            if ($success){
-                echo "Email sent.\n";
-            } else {
-                echo "Failed to then the email.";
-            }
 
         } catch(Exception $e) {
             $error = $e->getMessage();
